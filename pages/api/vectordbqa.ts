@@ -51,7 +51,12 @@ export default async function handler(
         streaming: true, 
         callbackManager: CallbackManager.fromHandlers( {  
             async handleLLMNewToken(token) {  
-            sendData(JSON.stringify({ data: token.replace(/["'\n\r]/g, '') }));
+            if (token === '') {
+              console.log("DONE")
+              sendData(JSON.stringify({ data: 'DONE' }));
+            } else {
+              sendData(JSON.stringify({ data: token.replace(/["'\n\r]/g, '') }));
+            }
         },
       }),
       },
