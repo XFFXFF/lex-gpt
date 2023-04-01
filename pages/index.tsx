@@ -77,10 +77,10 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Lex GPT</title>
+        <title>得意忘形 GPT</title>
         <meta
           name="description"
-          content={`AI-powered search and chat for the Lex Fridman podcast. `}
+          content={`AI-powered search and chat for De Yi Wang Xing podcast. `}
         />
         <meta
           name="viewport"
@@ -88,7 +88,7 @@ export default function Home() {
         />
         <link
           rel="icon"
-          href="/favicon.jpeg"
+          href="/favicon.ico"
         />
       </Head>
 
@@ -195,7 +195,7 @@ export default function Home() {
                 ))}
               </div>
             ) : (
-              <div className="mt-6 text-center text-lg">{`AI-powered search and chat for the Lex Fridman podcast.`}</div>
+              <div className="mt-6 text-center text-lg">{`AI-powered search and chat for De Yi Wang Xing podcast.`}</div>
             )}
           </div>
         </div>

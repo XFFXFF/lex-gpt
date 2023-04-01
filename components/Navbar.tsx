@@ -1,7 +1,7 @@
 import { IconExternalLink } from "@tabler/icons-react";
 import Image from "next/image";
 import { FC } from "react";
-import king from "../public/lex.jpeg";
+import king from "../public/deyiwangxing.png";
 
 export const Navbar: FC = () => {
   return (
@@ -23,11 +23,11 @@ export const Navbar: FC = () => {
       <div>
         <a
           className="flex items-center hover:opacity-50"
-          href="https://lexfridman.com/podcast/"
+          href="https://www.xiaoyuzhoufm.com/podcast/5e74543a418a84a046c4e50e"
           target="_blank"
           rel="noreferrer"
         >
-          <div className="hidden sm:flex">lexfridman.com</div>
+          <div className="hidden sm:flex">xiaoyuzhou.com</div>
 
           <IconExternalLink
             className="ml-1"
