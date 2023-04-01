@@ -5,7 +5,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {};
 const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-    console.log("start search")
     // Query 
     const query = req.body.query;
 
@@ -16,13 +15,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         apiKey: process.env.PINECONE_API_KEY ?? "",
       });
       const index = pinecone.Index("zhangxiaoyu");
-      console.log(`index: ${index}`)
       const vectorStore = await PineconeStore.fromExistingIndex(
         new OpenAIEmbeddings({}, { basePath: process.env.OPENAI_BASE_PATH }), {pineconeIndex: index},
       );
       // Return chunks to display as references 
       const results = await vectorStore.similaritySearch(query, 7);
-      console.log("end search")
       res.status(200).send(results); 
     }
 

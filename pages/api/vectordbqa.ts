@@ -13,7 +13,7 @@ export default async function handler(
   ) {
       // Inputs 
       const prompt = req.body.prompt;
-      console.log(prompt)
+      // console.log(prompt)
 
       const configuration = new Configuration({
         basePath: process.env.OPENAI_BASE_PATH || "",
