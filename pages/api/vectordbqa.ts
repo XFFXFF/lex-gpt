@@ -4,6 +4,7 @@ import { PineconeClient } from "@pinecone-database/pinecone";
 import { VectorDBQAChain } from "langchain/chains";
 import { OpenAIChat } from "langchain/llms";
 import { CallbackManager } from "langchain/callbacks";
+import { Configuration } from "openai";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -12,16 +13,22 @@ export default async function handler(
   ) {
       // Inputs 
       const prompt = req.body.prompt;
+      console.log(prompt)
+
+      const configuration = new Configuration({
+        basePath: process.env.OPENAI_BASE_PATH || "",
+        apiKey: process.env.OPENAI_API_KEY || "",
+      });
 
       // Vector DB
       const pinecone = new PineconeClient();
       await pinecone.init({
-        environment: "us-east1-gcp", 
+        environment: "us-central1-gcp", 
         apiKey: process.env.PINECONE_API_KEY ?? "",
       });
-      const index = pinecone.Index("lex-gpt");
+      const index = pinecone.Index("zhangxiaoyu");
       const vectorStore = await PineconeStore.fromExistingIndex(
-        new OpenAIEmbeddings(), {pineconeIndex: index},
+        new OpenAIEmbeddings({}, configuration), {pineconeIndex: index},
       );
 
       // Send data in SSE stream 
@@ -47,7 +54,8 @@ export default async function handler(
             sendData(JSON.stringify({ data: token.replace(/["'\n\r]/g, '') }));
         },
       }),
-      }
+      },
+      configuration
       );
 
       const chain = VectorDBQAChain.fromLLM(model, vectorStore);
