@@ -17,7 +17,7 @@ export const Navbar: FC = () => {
             alt="The Network State GPT"
             height={40}
           />
-          <div className="ml-2">Lex GPT</div>
+          <div className="ml-2">得意忘形 GPT</div>
         </a>
       </div>
       <div>
