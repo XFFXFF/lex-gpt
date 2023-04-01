@@ -2,15 +2,13 @@ export enum OpenAIModel {
   DAVINCI_TURBO = "gpt-3.5-turbo"
 }
 
-export type LEXChunk = {
+export type XYChunk = {
   pageContent: string;
-  source: string;
   metadata: Metadata;
-  length: number;
-};
+}
 
 interface Metadata {
-  id: string;
+  date: string;
   title: string;
-  link: string;
+  url: string;
 }

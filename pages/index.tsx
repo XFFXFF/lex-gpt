@@ -1,7 +1,7 @@
 import { Answer } from "@/components/Answer/Answer";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import { LEXChunk } from "@/types";
+import { XYChunk } from "@/types";
 import { IconArrowRight, IconExternalLink, IconSearch } from "@tabler/icons-react";
 import Head from "next/head";
 import Image from "next/image";
@@ -12,7 +12,7 @@ export default function Home() {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState<string>("");
-  const [chunks, setChunks] = useState<LEXChunk[]>([]);
+  const [chunks, setChunks] = useState<XYChunk[]>([]);
   const [answer, setAnswer] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);  
   const [showSettings, setShowSettings] = useState<boolean>(false);
@@ -42,7 +42,7 @@ export default function Home() {
       setLoading(false);
       throw new Error(search_results.statusText);
     }
-    const results: LEXChunk[] = await search_results.json();
+    const results: XYChunk[] = await search_results.json();
     setChunks(results);
 
     // Prompt for LLM summarization
@@ -137,7 +137,7 @@ export default function Home() {
                           <div className="flex items-center">
                             <Image
                               className="rounded-lg"
-                              src={"/"+chunk.metadata.id+".jpg"}
+                              src={"/deyiwangxing.png"}
                               width={103}
                               height={70}
                               alt={chunk.metadata.title}
@@ -148,7 +148,7 @@ export default function Home() {
                           </div>
                           <a
                             className="hover:opacity-50 ml-4"
-                            href={chunk.metadata.link}
+                            href={chunk.metadata.url}
                             target="_blank"
                             rel="noreferrer"
                           >
@@ -171,7 +171,7 @@ export default function Home() {
                         <div className="flex items-center">
                           <Image
                             className="rounded-lg"
-                            src={"/"+chunk.metadata.id+".jpg"}
+                            src={"/deyiwangxing.png"}
                             width={103}
                             height={70}
                             alt={chunk.metadata.title}
@@ -182,7 +182,7 @@ export default function Home() {
                         </div>
                         <a
                           className="hover:opacity-50 ml-2"
-                          href={chunk.metadata.link}
+                          href={chunk.metadata.url}
                           target="_blank"
                           rel="noreferrer"
                         >
